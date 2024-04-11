@@ -1,12 +1,32 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react'
+import { useState } from "react";
+import PropTypes from "prop-types";
 
-const EditTodoForm = () => {
-    return (
-        <div>
-            ola
-        </div>
-    )
-}
+export const EditTodoForm = ({ editTodo, task }) => {
+  const [value, setValue] = useState(task.task);
 
-export default EditTodoForm
+  const handleSubmit = (e) => {
+    // prevent default action
+    e.preventDefault();
+    // edit todo
+    editTodo(value, task.id);
+  };
+  return (
+    <form onSubmit={handleSubmit} className="TodoForm">
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        className="todo-input"
+        placeholder="Update task"
+      />
+      <button type="submit" className="todo-btn">
+        Add Task
+      </button>
+    </form>
+  );
+};
+
+EditTodoForm.propTypes = {
+  editTodo: PropTypes.func.isRequired, // editTodo deve ser uma função e é obrigatório
+  task: PropTypes.object.isRequired, // task deve ser um objeto e é obrigatório
+};

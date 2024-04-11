@@ -1,19 +1,24 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 
-const TodoForm = () => {
+export const TodoForm = ({ addTodo }) => {
   const [value, setValue] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(value);
+    addTodo(value);
+
+    setValue("");
   };
+
   return (
     <form className="TodoForm" onSubmit={handleSubmit}>
       <input
         type="text"
         className="todo-input"
         placeholder="Qual é a tarefa de hoje?"
+        value={value}
         onChange={(e) => setValue(e.target.value)}
       />
       <button type="submit" className="todo-btn">
@@ -23,4 +28,6 @@ const TodoForm = () => {
   );
 };
 
-export default TodoForm;
+TodoForm.propTypes = {
+  addTodo: PropTypes.func.isRequired,
+};
