@@ -1,10 +1,10 @@
 import "./App.css";
-import TodoWrapper from "./components/TodoWrapper";
+import { TodoWrapperLocalStorage } from "./components/TodoWrapperLocalStorage";
 
 const App = () => {
   return (
     <div>
-      <TodoWrapper />
+      <TodoWrapperLocalStorage />
     </div>
   );
 };

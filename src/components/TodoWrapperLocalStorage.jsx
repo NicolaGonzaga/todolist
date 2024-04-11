@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import TodoForm from "./TodoForm";
-import Todo from "./Todo";
-import EditTodoForm from "./EditTodoForm";
+import { TodoForm } from "./TodoForm";
+import { Todo } from "./Todo";
+import { EditTodoForm } from "./EditTodoForm";
 import { v4 as uuidv4 } from "uuid";
 
 export const TodoWrapperLocalStorage = () => {
@@ -53,11 +53,11 @@ export const TodoWrapperLocalStorage = () => {
   };
   return (
     <div className="TodoWrapper">
+      <h1>Mão na massa!</h1>
       <TodoForm addTodo={addTodo} />
       {todos.map((todo, index) =>
         todo.isEditing ? (
-          // eslint-disable-next-line react/jsx-key
-          <EditTodoForm editTodo={editTask} task={todo} />
+          <EditTodoForm key={todo.id} editTodo={editTask} task={todo} />
         ) : (
           <Todo
             task={todo}
